@@ -75,6 +75,7 @@ data class NewsApiResponse(
 @Composable
 fun Home(navController: NavHostController) {
     val scrollState = rememberLazyListState()
+    val uriHandler = LocalUriHandler.current
     val articles = remember { mutableStateOf(emptyList<Article>()) }
 
     LaunchedEffect(Unit) {
@@ -96,7 +97,7 @@ fun Home(navController: NavHostController) {
                     .padding(16.dp)
                     .shadow(8.dp, shape = MaterialTheme.shapes.medium)
                     .clickable {
-                        navController.navigate(Screen.SourceOne.route)
+                        uriHandler.openUri(article.url)
                     }
             ) {
                 Column {
