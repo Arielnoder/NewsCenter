@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NewsCenter</string>
+    <string name="Home">Home</string>
+    <string name="SourceOne">SourceOne</string>
+    <string name="SourceTwo">SourceTwo</string>
+    <string name="SourceThree">SourceThree</string>
+</resources>
