@@ -25,10 +25,9 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.newscenter.ui.theme.NewsCenterTheme
+import com.example.newscenter.ui.theme.md_theme_light_primary
 import androidx.navigation.compose.rememberNavController
 import com.example.newscenter.Screen.Companion.items
-
 
 
 class MainActivity : ComponentActivity() {
@@ -36,12 +35,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsCenterTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
+           MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.primary) {
                     Main()
+
 
                 }
             }
@@ -51,6 +48,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Main() {
+
         val navController = rememberNavController()
 
 
@@ -88,9 +86,11 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
             NavHost(
                 navController,
-                startDestination = Screen.Home.route,
+                startDestination = Screen.LoginPage.route,
                 Modifier.padding(innerPadding)
             ) {
+                composable(Screen.LoginPage.route) { LoginPage(navController) }
+                composable(Screen.Register.route) { Register(navController) }
                 composable(Screen.SourceOne.route) { SourceOne(navController) }
                 composable(Screen.Home.route) { Home(navController) }
                 composable(Screen.SourceTwo.route) { SourceTwo(navController) }

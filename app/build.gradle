@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         compose true
+        viewBinding true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.2'
@@ -50,6 +51,15 @@ android {
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     def nav_version = "2.5.3"
 
     implementation "io.ktor:ktor-client-android:1.6.4"
@@ -58,10 +68,13 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:1.6.4")
     implementation("io.ktor:ktor-client-logging:1.6.4")
     implementation("io.ktor:ktor-client-okhttp:1.6.4")
+    // implemnt installin
+    implementation 'androidx.appcompat:appcompat:1.4.0-beta01'
 
-
-
-
+     implementation 'com.google.dagger:dagger:2.38.1'
+    implementation 'javax.inject:javax.inject:1'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
