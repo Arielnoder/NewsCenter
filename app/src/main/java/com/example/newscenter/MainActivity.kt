@@ -1,7 +1,6 @@
 package com.example.newscenter
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,34 +20,40 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.newscenter.ui.theme.md_theme_light_primary
 import androidx.navigation.compose.rememberNavController
 import com.example.newscenter.Screen.Companion.items
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : ComponentActivity() {
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+
         setContent {
            MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.primary) {
+
                     Main()
 
 
                 }
             }
+
         }
+
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Main() {
-
         val navController = rememberNavController()
 
 
@@ -86,7 +91,10 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
             NavHost(
                 navController,
-                startDestination = Screen.LoginPage.route,
+                // change start destination according to user login status
+                // if (auth.currentUser != null) Screen.Home.route else
+                startDestination =  Screen.LoginPage.route,
+
                 Modifier.padding(innerPadding)
             ) {
                 composable(Screen.LoginPage.route) { LoginPage(navController) }
