@@ -67,7 +67,7 @@ fun Register(navController: NavHostController) {
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
                                 Log.d("Register", "createUserWithEmail:success")
-                                // navController.navigate("Home")
+                                 navController.navigate("Home")
                             } else {
                                 Log.w("Register", "createUserWithEmail:failure", it.exception)
                             }

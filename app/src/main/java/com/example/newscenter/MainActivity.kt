@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
 
 
         setContent {
@@ -92,8 +91,8 @@ class MainActivity : ComponentActivity() {
             NavHost(
                 navController,
                 // change start destination according to user login status
-                // if (auth.currentUser != null) Screen.Home.route else
-                startDestination =  Screen.LoginPage.route,
+
+                startDestination =  if (auth.currentUser != null) Screen.Home.route else Screen.LoginPage.route,
 
                 Modifier.padding(innerPadding)
             ) {

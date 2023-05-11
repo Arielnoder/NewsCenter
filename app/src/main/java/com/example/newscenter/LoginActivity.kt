@@ -92,7 +92,9 @@ fun LoginPage(navController: NavHostController) {
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Log.d("Login", "Login Success")
-                           /* navController.navigate("Home")*/
+
+                            navController.navigate("Home")
+
                         } else {
                             Log.d("Login", "Login Failed")
                         }

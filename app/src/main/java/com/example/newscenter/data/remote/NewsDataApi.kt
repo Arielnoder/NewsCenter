@@ -2,8 +2,8 @@ package com.example.newscenter.data.remote
 
 import com.example.newscenter.data.remote.responses.Article
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
+
 
 interface NewsDataApi {
     @GET("news")

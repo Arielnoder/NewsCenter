@@ -29,10 +29,14 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.newscenter.data.remote.responses.Result
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(navController: NavHostController) {
+
+
     val scrollState = rememberLazyListState()
+
     var api = AppModule.provideNewsDataApi()
     val newsList = remember { mutableStateOf(listOf<Result>()) }
     val apiKey = "pub_21751c3406ac34d56c0960b3d506723937368"
@@ -52,7 +56,9 @@ fun Home(navController: NavHostController) {
 
 
 
-    LaunchedEffect(key1 = true) {
+    LaunchedEffect(key1 = true ) {
+
+
         newsList.value = api.getNewsList(apiKey, "il", "he").results
         newsQuery.value = api.getNewsQuery(apiKey, query).results
 
