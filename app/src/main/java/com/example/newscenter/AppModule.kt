@@ -28,10 +28,9 @@ object AppModule {
         return Retrofit.Builder()
 
 
-            .baseUrl("https://newsdata.io/api/1/")
+            .baseUrl("https://newsapi-3e281-default-rtdb.europe-west1.firebasedatabase.app")
 
             .addConverterFactory(GsonConverterFactory.create())
-
             .client(okhttp3.OkHttpClient.Builder()
                 .dispatcher(dispatcher)
 

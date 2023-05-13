@@ -1,6 +1,7 @@
 package com.example.newscenter
 
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,8 +27,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.newscenter.data.remote.responses.Result
-
+import com.example.newscenter.data.remote.responses.Response
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,10 +38,10 @@ fun Home(navController: NavHostController) {
     val scrollState = rememberLazyListState()
 
     var api = AppModule.provideNewsDataApi()
-    val newsList = remember { mutableStateOf(listOf<Result>()) }
-    val apiKey = "pub_21751c3406ac34d56c0960b3d506723937368"
-    val query = "covid"
-    val newsQuery = remember { mutableStateOf(listOf<Result>()) }
+    val newsList = remember { mutableStateOf(listOf<Response>()) }
+    Log.d("Response", "Response is: ${newsList.value}")
+
+
     val uriHandler = LocalUriHandler.current
 
 
@@ -56,20 +56,19 @@ fun Home(navController: NavHostController) {
 
 
 
-    LaunchedEffect(key1 = true ) {
+    LaunchedEffect(key1 = true) {
 
 
-        newsList.value = api.getNewsList(apiKey, "il", "he").results
-        newsQuery.value = api.getNewsQuery(apiKey, query).results
+        newsList.value = api.getNewsList()?.articles ?: listOf()
 
 
     }
 
 
     LazyColumn(state = scrollState) {
-        itemsIndexed(newsList.value) { index, _ ->
-            if (newsList.value[index].image_url != null) {
 
+        itemsIndexed(newsList.value) { index, _ ->
+            if (newsList.value[index].image != null) {
                 ElevatedCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -78,7 +77,7 @@ fun Home(navController: NavHostController) {
 
 
                         .clickable {
-                            uriHandler.openUri(newsList.value[index].link)
+                            uriHandler.openUri(newsList.value[index].url)
                         },
 
 
@@ -89,7 +88,7 @@ fun Home(navController: NavHostController) {
 
                             Image(
 
-                                painter = rememberAsyncImagePainter(model = newsList.value[index].image_url),
+                                painter = rememberAsyncImagePainter(model = newsList.value[index].image),
                                 contentDescription = "Architecture",
                                 modifier = Modifier
                                     .fillMaxWidth(1F)

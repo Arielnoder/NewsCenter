@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                 navController,
                 // change start destination according to user login status
 
-                startDestination =  if (auth.currentUser != null) Screen.Home.route else Screen.LoginPage.route,
+                startDestination =   Screen.LoginPage.route,
 
                 Modifier.padding(innerPadding)
             ) {
