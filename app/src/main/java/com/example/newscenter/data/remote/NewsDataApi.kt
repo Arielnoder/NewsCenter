@@ -1,23 +1,21 @@
 package com.example.newscenter.data.remote
+// use the response from https://makoapi.herokuapp.com/articles/all to populate the list Articles
+// use the response from https://makoapi.herokuapp.com/articles/all to populate the list Articles
+// use the response from https://makoapi.herokuapp.com/articles/all to populate the list Articles
+// use the response from https://makoapi.herokuapp.com/articles/all to populate the list Articles
+// use the response from https://makoapi.herokuapp.com/articles/all to populate the list Articles
+
+
 
 import com.example.newscenter.data.remote.responses.Articles
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
-
+import retrofit2.http.POST
 
 interface NewsDataApi {
-    @GET("/articles.json")
-    suspend fun getNewsList(
-// get something from the api so we know it works
 
+    @POST("articles/saveAll")
+    suspend fun saveArticles(): List<Articles>
 
-
-
-    ) : Articles?
-
-
-
-
+    @GET("articles/all")
+    suspend fun getArticles(): List<Articles>
 }

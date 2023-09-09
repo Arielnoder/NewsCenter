@@ -4,7 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Articles(
-    @SerializedName("-NVM0BwC6dWgu3C22mgB")
 
-    val articles: List<Response>
+    val articles: List<Articles>,
+    val description: String,
+    val image: String,
+    val title: String,
+    val url: String
+
+
+
+
+
 )

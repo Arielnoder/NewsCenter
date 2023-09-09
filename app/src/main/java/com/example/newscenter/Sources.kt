@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.newscenter.data.remote.responses.Response
+import com.example.newscenter.data.remote.responses.Articles
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +38,7 @@ fun Home(navController: NavHostController) {
     val scrollState = rememberLazyListState()
 
     var api = AppModule.provideNewsDataApi()
-    val newsList = remember { mutableStateOf(listOf<Response>()) }
+    val newsList = remember { mutableStateOf(listOf<Articles>()) }
     Log.d("Response", "Response is: ${newsList.value}")
 
 
@@ -56,10 +56,15 @@ fun Home(navController: NavHostController) {
 
 
 
+
+
     LaunchedEffect(key1 = true) {
+        if(api.getArticles().isEmpty()){
+            api.saveArticles()
+        }
 
+        newsList.value = api.getArticles()
 
-        newsList.value = api.getNewsList()?.articles ?: listOf()
 
 
     }
